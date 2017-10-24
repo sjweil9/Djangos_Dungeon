@@ -3,10 +3,11 @@
 current bugs:
 
 desired functionality:
--**add new maps/connect them (how to organize? matrix of matrices?)
--more items
+-more items/WEAPONS
 -gold?
--add types of monsters/locations for them to appear
+-add MORE types of monsters/locations for them to appear
+-healing fountains
+-Final Boss
 
 */
 
@@ -17,25 +18,25 @@ $(document).ready(function(){
         // map related variables
         var room1 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,6],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,1,1,1,0,0,0,0,0,0,0,0,2],
+            [2,0,0,1,4,1,0,0,0,0,0,0,0,0,2],
+            [2,0,0,1,1,1,0,0,0,0,0,0,1,1,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,1,1,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,1,1,6],
+            [2,0,0,0,0,0,0,0,0,0,0,1,1,1,2],
+            [2,0,0,0,1,1,1,1,1,0,0,1,3,1,2],
+            [2,0,0,0,1,1,1,1,1,0,0,1,1,1,2],
             [2,2,2,2,2,2,6,2,2,2,2,2,2,2,2],
         ];
         var room2 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [6,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
+            [2,0,0,1,1,4,4,1,1,0,0,0,0,0,2],
+            [2,0,0,1,1,1,1,1,1,0,0,5,0,0,2],
+            [2,1,1,0,0,0,0,0,0,0,1,1,0,0,2],
+            [2,1,1,0,0,0,0,0,0,1,1,1,1,0,2],
+            [6,1,1,0,0,0,0,0,1,1,3,3,1,1,2],
+            [2,1,1,0,0,0,0,0,0,1,1,1,1,0,2],
+            [2,1,1,0,0,0,0,0,0,0,1,1,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,6,2,2,2,2,2,2],
         ];
@@ -54,44 +55,48 @@ $(document).ready(function(){
         var room4 = [
             [2,2,2,2,2,2,6,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,4,4,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,3,3,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
+            [2,0,5,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         ];
         var room5 = [
             [2,2,2,2,2,2,2,2,6,2,2,2,2,2,2],
+            [2,0,0,5,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,6],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,1,1,1,2],
+            [2,1,1,1,1,1,1,0,0,0,0,1,1,1,6],
+            [2,1,1,1,1,1,1,0,0,0,0,1,1,1,2],
+            [2,1,1,1,1,1,1,0,0,0,0,0,0,0,2],
+            [2,3,4,3,1,1,1,0,0,0,0,3,0,0,2],
+            [2,4,3,4,1,1,1,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         ];
         var room6 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,6,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [6,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
+            [6,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         ];
         var startglobe = [
             [room1, room2, room3],
             [room4, room5, room6]
         ]
-        var start_quests = [{'name': 'Goblin', 'xp': 200, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Goblins and return for a reward!</p>", 'reward': "<p class='green'>You receive 200XP and two potions!</p>"}, {'name': 'Troll', 'xp': 350, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Trolls and return for a reward!</p>", 'reward': "<p class='green'>You receive 350XP and two potions!</p>"}];
+        var start_quests = [
+            {'name': 'Goblin', 'xp': 200, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Goblins and return for a reward!</p>", 'reward': "<p class='green'>You receive 200XP and two potions!</p>"}, 
+            {'name': 'Troll', 'xp': 350, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Trolls and return for a reward!</p>", 'reward': "<p class='green'>You receive 350XP and two potions!</p>"}, 
+            {'name': 'Dragon', 'xp': 3000, 'items': ['Healing Potion','Healing Potion','Healing Potion','Healing Potion','Healing Potion','Energy Potion','Energy Potion','Energy Potion','Energy Potion','Energy Potion'], 'message': "<p class='green huge'>You have made it deep into Django's Dungeon, adventurer. Legend tells that the caverns beyond this point contain Dragons! Kill 3 and return for a sizeable reward!</p>", 'reward': "<p class='green'>You receive 3000XP and TEN potions!</p>"}
+        ];
         // THIS SECTION DEFINES CHARACTER CLASS AND ASSOC. METHODS
         // character related variables
         class Character {
@@ -132,7 +137,7 @@ $(document).ready(function(){
                 if (this.hp <= 0){
                     $('#messages').html("<p class='red huge'>YOU HAVE DIED</p>");
                     $('#gamewrap').children().hide();
-                    $('#gamewrap').css({'background': 'url(images/gameover.jpg) no-repeat center', 'background-size': '100% 100%'});
+                    $('#gamewrap').css({'background': 'url(static/save/images/gameover.jpg) no-repeat center', 'background-size': '100% 100%'});
                     this.moveable = false;
                     this.in_combat = false;
                 }
@@ -144,6 +149,10 @@ $(document).ready(function(){
                     this.maxhp += this.lvl*this.lvl*10;
                     this.maxenergy += this.lvl*this.lvl*5;
                     this.atkval += this.lvl*this.lvl;
+                    if (this.lvl == 5) {
+                        this.combat_moves['Fireball'] = ['C', 4, 20];
+                        $('#messages').prepend("<p class='green huge'>You learned FIREBALL!</p>");
+                    }
                     updateStats();
                 }
             }
@@ -176,7 +185,7 @@ $(document).ready(function(){
                 $('#character').hide();
                 var enemy_html = "<div id='enemy'><img src='static/save/images/" + this.target.name + ".png' alt='" + this.target.name + "'></div>";
                 $('#gamewrap').append(enemy_html);
-                var message_html = "<p class='red'><b>A " + this.target.name + " appeared!</b></p>";
+                var message_html = "<p class='red huge'><b>A " + this.target.name + " appeared!</b></p>";
                 $('#messages').prepend(message_html);
                 $('#gamewrap').append("<div id='combatbottom'><div id='enemystats'></div><div id='usercommands'></div></div>");
                 updateMonsterStats();
@@ -250,10 +259,17 @@ $(document).ready(function(){
                         quest_log_html += ("</ul>");
                     }
                     $('#stats').html(quest_log_html);
+                    $('#stats').css('overflow-y', 'scroll');
                 }
             }
             start_quest(){
-                var quest = this.available_quests[Math.floor(Math.random()*this.available_quests.length)];
+                var quest;
+                if (this.room_x == 1 && this.room_y == 1) {
+                    quest = this.available_quests[2];
+                }
+                else {
+                    quest = this.available_quests[Math.floor(Math.random()*this.available_quests.length)];
+                }
                 $('#messages').prepend(quest.message);
                 this.active_quest = quest;
                 this.quest_counter = 0;
@@ -442,14 +458,19 @@ $(document).ready(function(){
                 }
                 // check for monsters
                 if (character.world[character.y][character.x] == 1) {
-                    if (Math.random() <= 0.1) {
+                    var rng = Math.random();
+                    if (character.room_x == 2 && character.room_y == 1 && rng <= 0.2) {
+                        character.target = new Monster('Dragon', character.lvl, 30, 150, 200);
+                        character.attack(character.target);
+                    }
+                    else if (rng <= 0.1) {
                         character.target = new Monster('Goblin', character.lvl, 15, 50, 50);
                         character.attack(character.target);
                     }
-                    else if (Math.random() <= 0.2) {
+                    else if (rng <= 0.2) {
                         character.target = new Monster('Troll', character.lvl, 10, 75, 65);
                         character.attack(character.target);
-                    }
+                    }  
                 }
                 else if (character.world[character.y][character.x] == 3) {
                     $('#messages').prepend("<p class='green'>You acquired a potion!</p>");
@@ -472,6 +493,10 @@ $(document).ready(function(){
                 else if (e.which == 66){
                     character.in_motion = true;
                     character.use_move('Kick');
+                }
+                else if (e.which == 67){
+                    character.in_motion = true;
+                    character.use_move('Fireball');
                 }
             }
         });
