@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'save/signin.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'save/signin.css' %}">
+</head>
+<body class="signin dashboard">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-3 right">
+                <a href="/dashboard">Return to Dashboard</a> | <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-3 chardata">
+                <h4>{{character.name}}</h4>
+                <p>Level {{character.lvl}}</p>
+                <p>HP: {{character.hp}}/{{character.maxhp}}</p>
+                <p>Energy: {{character.energy}}/{{character.maxenergy}}</p>
+                <p>Current Combat Moves:</p>
+                <ul>
+                    {% for move in character.combat_moves %}
+                    <li>{{move}}</li>
+                    {% endfor %}
+                </ul>
+                <p>Current Inventory:</p>
+                <ul>
+                    {% for item in character.inventory %}
+                    <li>{{item}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

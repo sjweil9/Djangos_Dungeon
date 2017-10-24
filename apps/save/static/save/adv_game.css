@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: url(images/cavewallbg.jpg) no-repeat center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+div#gamewrap{
+    display: inline-block;
+    width: 960px;
+    height: 640px;
+    border: 2px solid black;
+}
+div#sidebar{
+    display: inline-block;
+    width: 300px;
+    height: 636px;
+    margin: 5px 0 0 25px;
+    vertical-align: top;
+}
+div#stats{
+    width: 270px;
+    padding: 15px;
+    height: 160px;
+    margin-bottom: 30px;
+    border: 2px solid black;
+    text-align: center;
+}
+    div#stats h2{
+        font-weight: none;
+    }
+    div#stats p{
+        margin-top: 10px;
+    }
+    div#stats button{
+        margin-top: 10px;
+        padding: 5px;
+        display: block;
+        margin: 5px auto;
+    }
+    div#stats ul{
+        list-style: none;
+    }
+div#stats, div#messages{
+    background: url(images/parchmentbg.jpeg) no-repeat center;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+div#messages{
+    padding: 15px;
+    width: 270px;
+    height: 320px;
+    border: 2px solid black;
+    overflow-y: scroll;
+    text-align: left;
+}
+    div#messages p::before{
+        content: "\00bb";
+    }
+div#menu{
+    margin-top: 15px;
+    height: 20px;
+    text-align: center;
+}
+div#enemy{
+    width: 960px;
+    height: 400px;
+    background: url(images/dungeon.jpg) no-repeat center;
+    background-size: 100% 100%;
+}
+    div#enemy img{
+        display: block;
+        margin: auto;
+        max-height: 75%;
+        max-width: 75%;
+        padding-top: 100px;
+    }
+div#combatbottom{
+    background: url(images/enemy_stat_bg.jpg) no-repeat center;
+    background-size: 100% 100%;
+    height: 242px;
+    color: white;    
+}
+    div#enemystats{
+        width: 250px;
+        height: 100%;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+    }
+        div#enemystats h1{
+            margin-top: 50px;
+        }
+    div#usercommands{
+        margin-left: 75px;
+        width: 450px;
+        height: 100%;
+        display: inline-block;
+    }
+        div#usercommands > p:first-child{
+            margin-top: 50px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        div#usercommands > p{
+            margin-bottom: 10px;
+        }
+div.row{
+    height: 64px;
+}
+div.row div{
+    width: 64px;
+    height: 64px;
+    display: inline-block;
+}
+div.wall{
+    background: url(images/wall.png) no-repeat center;
+    background-size: 100% 100%;
+}
+div.empty{
+    background: url(images/ground.png) no-repeat center;
+    background-size: 100% 100%;
+}
+    div.empty img{
+        max-height: 100%;
+        max-width: 100%;
+    }
+div.danger{
+    background: url(images/stone.png) no-repeat center;
+    background-size: 100% 100%;
+}
+div#character{
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    background-image: url(images/character_set.gif);
+    background-position: 0px 0px;
+    background-repeat: none;
+    left: 64px;
+    top: 64px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.huge{
+    font-size: 24px;
+    font-weight: bold;
+}
+form#save{
+    display: inline-block;
+}
+form#save input[type='submit']{
+    margin-top: 15px;
+    background-color: green;
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid white;
+    font-family: Garamond, arial;
+}
+a#db{
+    margin-left: 1em;
+    display: inline-block;
+    background-color: green;
+    color: white;
+    font-size: 12px;
+    padding: 10px;
+    border: 1px solid white;
+    text-decoration: none;
+    font-family: Garamond, arial;
+}

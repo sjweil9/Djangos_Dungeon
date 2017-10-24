@@ -1,0 +1,111 @@
+.form {
+    position: relative;
+    z-index: 1;
+    background: rgba(138, 137, 137, 0.62);
+    max-width: 360px;
+    margin: 150px auto 150px;
+    padding: 15px 45px 45px 40px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #FF5722;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+    background: #43A047;
+}
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+.form .message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+.form .register-form {
+    display: none;
+}
+.form h1 {
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: white;
+}
+p.error{
+    color: red;
+}
+body.signin{
+    background: url(images/signinbg.jpg) center no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+div.intro{
+    width: 50%;
+    height: 20%;
+    margin: 25% auto;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+a.btn.btn-primary.intro{
+    background-color: black;
+    border: 1px solid white;
+}
+body.dashboard > * {
+    color: white;
+}
+div.col-md-5.dash{
+    background: rgba(138, 137, 137, 0.62);
+    text-align: center;
+}
+form#newchar{
+    margin-top: 40px;
+    padding-top: 10px;
+    border-top: 2px solid black;
+}
+    form#newchar input[type='submit']{
+        background-color: green;
+    }
+    form#newchar input[type='text']{
+        color: black;
+    }
+div.card{
+    color: black;
+    padding: 5px;
+}
+p.card-text{
+    margin-bottom: 0;
+}
+div.right{
+    text-align: right;
+}
+div.col-md-3.chardata{
+    margin-top: 5em;
+    background: rgba(138, 137, 137, 0.62);
+    padding: 1.5em;
+}
+div.row.justify-content-between.dashheader{
+    margin-bottom: 4em;
+}

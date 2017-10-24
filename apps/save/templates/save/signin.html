@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign In</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'save/signin.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'save/signin.css' %}">
+    {% if request.session.status == "register" %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        })
+    </script>
+    {% endif %}
+</head>
+<body class="signin">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class='form'>
+        
+                    <form action='/login' method='POST' class='login-form'>
+                        {% csrf_token %}
+                        <h1>Log In</h1>
+                        <input type="text" name="username" class="form-control" placeholder='Username'>
+                        <input type="password" name="pword" class="form-control" placeholder='Password'>
+                        <Button type="submit" class="btn btn-primary">Login</Button>
+                        {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'login error' %}
+                                <p class="error">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <p class="message">Not registered?
+                            <a href="#">Create an account</a>
+                        </p>
+                    </form>
+        
+                    <form action='/register' method='POST' class='register-form'>
+                        {% csrf_token %}
+                        <h1>Register</h1>
+                        <input type="text" name="username" class="form-control" placeholder='Username'>
+                        {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'usernamelen error' or message.tags == 'usernamechars error' %}
+                                <p class="error">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <input type="password" name="pword" class="form-control" placeholder='Password'>
+                        <input type="password" name="conf" class="form-control" placeholder='Confirm Password'>
+                        {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'pword error' or message.tags == 'pwconf error' %}
+                                <p class="error">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <Button type="submit" class="btn btn-primary">Register</Button>
+                        <p class="message">Already registered?
+                            <a href="#">Sign In</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
