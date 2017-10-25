@@ -21,6 +21,7 @@ div#sidebar{
     vertical-align: top;
 }
 div#stats{
+    font-size: 1em;
     width: 270px;
     padding: 15px;
     height: 160px;

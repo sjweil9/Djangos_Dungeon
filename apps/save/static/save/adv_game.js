@@ -148,7 +148,6 @@ $(document).ready(function(){
                 if (this.xp >= this.lvl*this.lvl*100) {
                     $('#messages').prepend("<p class='green huge'>You leveled up!</p>");
                     this.lvl += 1;
-                    $('#level').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                     this.maxhp += this.lvl*this.lvl*10;
                     this.maxenergy += this.lvl*this.lvl*5;
                     this.atkval += this.lvl*this.lvl;
@@ -161,6 +160,7 @@ $(document).ready(function(){
                         $('#messages').prepend("<p class='green huge'>You learned FIREBLAST!</p>");
                     }
                     updateStats();
+                    $('#stats').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                 }
             }
             use_move(move){
@@ -175,7 +175,7 @@ $(document).ready(function(){
                     this.energy -= this.combat_moves[move][2];
                     updateStats();
                     updateMonsterStats();
-                    $('#hp').css('color', 'red').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'black');});
+                    $('#hp').css({'color': 'red', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'black', 'font-size': '1em'});});
                     $('#enemy img').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){
                         character.check_death();
                         if (character.hp >= 0){
@@ -236,7 +236,7 @@ $(document).ready(function(){
                                 character.hp = character.maxhp;
                             }
                             character.check_inventory();
-                            $('#hp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'red');});
+                            $('#hp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'red', 'font-size': '1em'});});
                         }
                         else if (cur_item == "Energy Potion") {
                             character.energy += 50;
@@ -244,7 +244,7 @@ $(document).ready(function(){
                                 character.energy = character.maxenergy;
                             }
                             character.check_inventory();
-                            $('#energy').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css('color', 'black');});
+                            $('#energy').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css({'color': 'black', 'font-size': '1em'});});
                         }
                     });
                     $('#stats form').submit(function(){
@@ -298,7 +298,7 @@ $(document).ready(function(){
                     this.inventory.push(this.active_quest.items[item]);
                 }
                 this.active_quest = null;
-                $('#xp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#xp').css('color', 'black');});
+                $('#xp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#xp').css({'color': 'black', 'font-size': '1em'});});
                 updateStats();
                 this.check_level();
             }
@@ -325,7 +325,15 @@ $(document).ready(function(){
                         worldhtml += "<div class='empty'><img src='static/save/images/energy_potion.png' alt='energy potion'></div>";
                     }
                     else if (character.world[i][j] == 5) {
-                        worldhtml += "<div class='empty'><img src='static/save/images/elf.png' alt='elf'></div>";
+                        if (character.room_x == 0 && character.room_y == 1) {
+                            worldhtml += "<div class='empty'><img src='static/save/images/elf.png' alt='elf'></div>";
+                        }
+                        else if (character.room_x == 1 && character.room_y == 0) {
+                            worldhtml += "<div class='empty'><img src='static/save/images/swordsman.png' alt='swordsman'></div>";
+                        }
+                        else if (character.room_x == 1 && character.room_y == 1) {
+                            worldhtml += "<div class='empty'><img src='static/save/images/wizard.png' alt='wizard'></div>";
+                        }
                     }
                     else if (character.world[i][j] == 6) {
                         worldhtml += "<div class='empty'></div>";
@@ -429,11 +437,33 @@ $(document).ready(function(){
                     character.hp = character.maxhp;
                     character.energy = character.maxenergy;
                     updateStats();
-                    $('#hp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'black');});
-                    $('#energy').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css('color', 'black');});
+                    $('#hp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'black', 'font-size': '1em'});});
+                    $('#energy').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css({'color': 'black', 'font-size': '1em'});});
                 }
             }
             else if (character.moveable) {
+                // check for transport
+                if (character.world[character.y][character.x] == 6) {
+                    if (e.which == 40 && character.y == character.world.length-1) {
+                        character.room_y += 1;
+                        character.y = -1;
+                    }
+                    if (e.which == 38 && character.y == 0) {
+                        character.room_y -= 1;
+                        character.y = 10;
+                    }
+                    if (e.which == 39 && character.x == character.world[character.y].length-1) {
+                        character.room_x += 1;
+                        character.x = -1;
+                    }
+                    if (e.which == 37 && character.x == 0) {
+                        character.room_x -= 1;
+                        character.x = 15;
+                    }
+                    character.world = character.globe[character.room_y][character.room_x];
+                    createWorld();
+                    character.moveCharacter();
+                }
                 if (e.which == 37) {
                     if (character.world[character.y][character.x-1] != 2 && character.world[character.y][character.x-1] != 5 && character.world[character.y][character.x-1] != 7) {
                         character.x -= 1;
@@ -461,28 +491,6 @@ $(document).ready(function(){
                 // actually render/move character sprite
                 character.moveCharacter();
                 // FOLLOWING CHECKS INITIATE ABOVE METHODS
-                // check for transport
-                if (character.world[character.y][character.x] == 6) {
-                    if (e.which == 40) {
-                        character.room_y += 1;
-                        character.y = 0;
-                    }
-                    if (e.which == 38) {
-                        character.room_y -= 1;
-                        character.y = 9;
-                    }
-                    if (e.which == 39) {
-                        character.room_x += 1;
-                        character.x = 0;
-                    }
-                    if (e.which == 37) {
-                        character.room_x -= 1;
-                        character.x = 14;
-                    }
-                    character.world = character.globe[character.room_y][character.room_x];
-                    createWorld();
-                    character.moveCharacter();
-                }
                 // check for monsters
                 if (character.world[character.y][character.x] == 1) {
                     var rng = Math.random();
