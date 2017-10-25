@@ -1,11 +1,11 @@
 /*
 
 current bugs:
--need to make quests be returned to the specific guy (in the specific room) you got them from
 
 desired functionality:
 -WEAPONS
 -Final Boss
+-diff looking quest guys?
 -key to unlock final room
 -add MORE types of monsters/locations for them to appear
 -gold?
@@ -148,6 +148,7 @@ $(document).ready(function(){
                 if (this.xp >= this.lvl*this.lvl*100) {
                     $('#messages').prepend("<p class='green huge'>You leveled up!</p>");
                     this.lvl += 1;
+                    $('#level').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
                     this.maxhp += this.lvl*this.lvl*10;
                     this.maxenergy += this.lvl*this.lvl*5;
                     this.atkval += this.lvl*this.lvl;
@@ -174,14 +175,20 @@ $(document).ready(function(){
                     this.energy -= this.combat_moves[move][2];
                     updateStats();
                     updateMonsterStats();
-                    this.check_death();
-                    if (this.hp >= 0){
-                        this.target.check_death();
-                    }
-                    this.in_motion = false;
+                    $('#hp').css('color', 'red').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'black');});
+                    $('#enemy img').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){
+                        character.check_death();
+                        if (character.hp >= 0){
+                            character.target.check_death();
+                        }
+                        character.in_motion = false;
+                    });
                 }
                 else {
-                    this.in_motion = false;
+                    $('#usercommands').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){
+                        $('#messages').prepend("<p class='red huge'>You don't have enough energy for that!</p>");
+                        character.in_motion = false;
+                    });
                 }
             }
             attack() {
@@ -229,6 +236,7 @@ $(document).ready(function(){
                                 character.hp = character.maxhp;
                             }
                             character.check_inventory();
+                            $('#hp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'red');});
                         }
                         else if (cur_item == "Energy Potion") {
                             character.energy += 50;
@@ -236,6 +244,7 @@ $(document).ready(function(){
                                 character.energy = character.maxenergy;
                             }
                             character.check_inventory();
+                            $('#energy').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css('color', 'black');});
                         }
                     });
                     $('#stats form').submit(function(){
@@ -278,6 +287,7 @@ $(document).ready(function(){
                 }
                 $('#messages').prepend(quest.message);
                 this.active_quest = quest;
+                this.active_quest.room = [this.room_x, this.room_y];
                 this.quest_counter = 0;
             }
             finish_quest(){
@@ -288,6 +298,7 @@ $(document).ready(function(){
                     this.inventory.push(this.active_quest.items[item]);
                 }
                 this.active_quest = null;
+                $('#xp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#xp').css('color', 'black');});
                 updateStats();
                 this.check_level();
             }
@@ -338,10 +349,10 @@ $(document).ready(function(){
         function updateStats() {
             var htmlString = "";
             htmlString += ("<h1>" + character.name + "</h1>");
-            htmlString += ("<h2>Level " + character.lvl + "</h2>");
-            htmlString += ("<p>HP: " + character.hp + "/" + character.maxhp + "</p>");
-            htmlString += ("<p>XP: " + character.xp + "/" + (character.lvl*character.lvl*100) + "</p>");
-            htmlString += ("<p>Energy: " + character.energy + "/" + character.maxenergy + "</p>");
+            htmlString += ("<h2 id='level'>Level " + character.lvl + "</h2>");
+            htmlString += ("<p id='hp'>HP: " + character.hp + "/" + character.maxhp + "</p>");
+            htmlString += ("<p id='xp'>XP: " + character.xp + "/" + (character.lvl*character.lvl*100) + "</p>");
+            htmlString += ("<p id='energy'>Energy: " + character.energy + "/" + character.maxenergy + "</p>");
             $('#stats').css('overflow-y', 'hidden');
             $('#stats').html(htmlString);
         }
@@ -409,7 +420,7 @@ $(document).ready(function(){
                     if (character.active_quest == null) {
                         character.start_quest();
                     }
-                    else if (character.quest_counter == "done") {
+                    else if (character.quest_counter == "done" && character.active_quest.room[0] == character.room_x && character.active_quest.room[1] == character.room_y) {
                         character.finish_quest();
                     }
                 }
@@ -418,6 +429,8 @@ $(document).ready(function(){
                     character.hp = character.maxhp;
                     character.energy = character.maxenergy;
                     updateStats();
+                    $('#hp').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css('color', 'black');});
+                    $('#energy').css('color', 'green').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css('color', 'black');});
                 }
             }
             else if (character.moveable) {

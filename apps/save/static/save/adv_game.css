@@ -34,12 +34,6 @@ div#stats{
     div#stats p{
         margin-top: 10px;
     }
-    div#stats button{
-        margin-top: 10px;
-        padding: 5px;
-        display: block;
-        margin: 5px auto;
-    }
     div#stats ul{
         list-style: none;
     }
@@ -173,4 +167,22 @@ a#db{
     border: 1px solid white;
     text-decoration: none;
     font-family: Garamond, arial;
+}
+button[value='Healing Potion']{
+    background: url(images/healing_potion.png);
+    background-size: 100% 100%;
+    color: transparent;
+    height: 3em;
+    width: 3em;
+    display: inline-block;
+    margin: 1em;
+}
+button[value='Energy Potion']{
+    background: url(images/energy_potion.png);
+    background-size: 100% 100%;
+    color: transparent;
+    height: 3em;
+    width: 3em;
+    display: inline-block;
+    margin: 1em;
 }
