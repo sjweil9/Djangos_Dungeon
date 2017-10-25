@@ -1,14 +1,15 @@
 /*
 
 current bugs:
+-need to make quests be returned to the specific guy (in the specific room) you got them from
 
 desired functionality:
--more items/WEAPONS
--gold?
--add MORE types of monsters/locations for them to appear
--healing fountains
+-WEAPONS
 -Final Boss
-
+-key to unlock final room
+-add MORE types of monsters/locations for them to appear
+-gold?
+-more items
 */
 
 $(document).ready(function(){
@@ -43,19 +44,19 @@ $(document).ready(function(){
         var room3 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,4,0,0,0,0,0,0,0,5,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,3,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,6,2],
         ];
         var room4 = [
             [2,2,2,2,2,2,6,2,2,2,2,2,2,2,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
-            [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
+            [2,0,7,0,0,0,1,1,1,1,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,4,4,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,3,3,1,1,0,0,2],
@@ -136,6 +137,7 @@ $(document).ready(function(){
             check_death(){
                 if (this.hp <= 0){
                     $('#messages').html("<p class='red huge'>YOU HAVE DIED</p>");
+                    $('#messages').append("<p class='green'>Refresh or Return to Dashboard to Reload at Last Save</p>");
                     $('#gamewrap').children().hide();
                     $('#gamewrap').css({'background': 'url(static/save/images/gameover.jpg) no-repeat center', 'background-size': '100% 100%'});
                     this.moveable = false;
@@ -152,6 +154,10 @@ $(document).ready(function(){
                     if (this.lvl == 5) {
                         this.combat_moves['Fireball'] = ['C', 4, 20];
                         $('#messages').prepend("<p class='green huge'>You learned FIREBALL!</p>");
+                    }
+                    if (this.lvl == 10) {
+                        this.combat_moves['Fireblast'] = ['D', 8, 50];
+                        $('#messages').prepend("<p class='green huge'>You learned FIREBLAST!</p>");
                     }
                     updateStats();
                 }
@@ -313,6 +319,9 @@ $(document).ready(function(){
                     else if (character.world[i][j] == 6) {
                         worldhtml += "<div class='empty'></div>";
                     }
+                    else if (character.world[i][j] == 7) {
+                        worldhtml += "<div class='empty'><img src='static/save/images/healingfountain.png' alt='healing fountain'></div>";
+                    }
                 }
                 worldhtml += "</div>";
             }
@@ -394,39 +403,44 @@ $(document).ready(function(){
             else if (e.which == 81) {
                 character.check_quest_log();
             }
-            else if (e.which == 32 && character.active_quest == null) {
+            else if (e.which == 32) {
                 var c = character;
                 if (c.world[c.y][c.x-1] == 5 || c.world[c.y][c.x+1] == 5 || c.world[c.y-1][c.x] == 5 || c.world[c.y+1][c.x] == 5) {
-                    character.start_quest();
+                    if (character.active_quest == null) {
+                        character.start_quest();
+                    }
+                    else if (character.quest_counter == "done") {
+                        character.finish_quest();
+                    }
                 }
-            }
-            else if (e.which == 32 && character.quest_counter == "done") {
-                var c = character;
-                if (c.world[c.y][c.x-1] == 5 || c.world[c.y][c.x+1] == 5 || c.world[c.y-1][c.x] == 5 || c.world[c.y+1][c.x] == 5) {
-                    character.finish_quest();
+                if (c.world[c.y][c.x-1] == 7 || c.world[c.y][c.x+1] == 7 || c.world[c.y-1][c.x] == 7 || c.world[c.y+1][c.x] == 7) {
+                    $('#messages').prepend("<p class='green huge'>You drink from the healing fountain. Your health and energy are restored!</p>");
+                    character.hp = character.maxhp;
+                    character.energy = character.maxenergy;
+                    updateStats();
                 }
             }
             else if (character.moveable) {
                 if (e.which == 37) {
-                    if (character.world[character.y][character.x-1] != 2 && character.world[character.y][character.x-1] != 5) {
+                    if (character.world[character.y][character.x-1] != 2 && character.world[character.y][character.x-1] != 5 && character.world[character.y][character.x-1] != 7) {
                         character.x -= 1;
                         $('#character').css('background-position', '0px -64px');
                     }
                 }
                 else if (e.which == 39) {
-                    if (character.world[character.y][character.x+1] != 2 && character.world[character.y][character.x+1] != 5) {
+                    if (character.world[character.y][character.x+1] != 2 && character.world[character.y][character.x+1] != 5 && character.world[character.y][character.x+1] != 7) {
                         character.x += 1;
                         $('#character').css('background-position', '0 0');
                     }
                 }
                 else if (e.which == 38) {
-                    if (character.world[character.y-1][character.x] != 2 && character.world[character.y-1][character.x] != 5) {
+                    if (character.world[character.y-1][character.x] != 2 && character.world[character.y-1][character.x] != 5 && character.world[character.y-1][character.x] != 7) {
                         character.y -= 1;
                         $('#character').css('background-position', '-64px -64px');
                     }
                 }
                 else if (e.which == 40) {
-                    if (character.world[character.y+1][character.x] != 2 && character.world[character.y+1][character.x] != 5) {
+                    if (character.world[character.y+1][character.x] != 2 && character.world[character.y+1][character.x] != 5 && character.world[character.y+1][character.x] != 7) {
                         character.y += 1;
                         $('#character').css('background-position', '-64px 0px');
                     }
@@ -497,6 +511,10 @@ $(document).ready(function(){
                 else if (e.which == 67){
                     character.in_motion = true;
                     character.use_move('Fireball');
+                }
+                else if (e.which == 68){
+                    character.in_motion = true;
+                    character.use_move('Fireblast');
                 }
             }
         });
