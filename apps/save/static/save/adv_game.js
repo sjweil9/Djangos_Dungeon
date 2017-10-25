@@ -3,10 +3,7 @@
 current bugs:
 
 desired functionality:
--WEAPONS
--Final Boss
--diff looking quest guys?
--key to unlock final room
+-max inventory size/have potions stack
 -add MORE types of monsters/locations for them to appear
 -gold?
 -more items
@@ -31,11 +28,11 @@ $(document).ready(function(){
         ];
         var room2 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-            [2,0,0,1,1,4,4,1,1,0,0,0,0,0,2],
+            [2,0,0,1,1,4,1,1,1,0,0,0,0,0,2],
             [2,0,0,1,1,1,1,1,1,0,0,5,0,0,2],
             [2,1,1,0,0,0,0,0,0,0,1,1,0,0,2],
             [2,1,1,0,0,0,0,0,0,1,1,1,1,0,2],
-            [6,1,1,0,0,0,0,0,1,1,3,3,1,1,2],
+            [6,1,1,0,0,0,0,0,1,1,1,3,1,1,2],
             [2,1,1,0,0,0,0,0,0,1,1,1,1,0,2],
             [2,1,1,0,0,0,0,0,0,0,1,1,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
@@ -43,7 +40,7 @@ $(document).ready(function(){
         ];
         var room3 = [
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
-            [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
+            [2,0,0,0,0,0,0,5,0,0,0,0,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
@@ -58,8 +55,8 @@ $(document).ready(function(){
             [2,0,0,0,0,0,0,0,0,0,0,0,0,0,2],
             [2,0,7,0,0,0,1,1,1,1,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
-            [2,0,0,0,0,0,1,1,4,4,1,1,0,0,2],
-            [2,0,0,0,0,0,1,1,3,3,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,4,0,1,1,0,0,2],
+            [2,0,0,0,0,0,1,1,0,3,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
             [2,0,0,0,0,0,1,1,1,1,1,1,0,0,2],
             [2,0,5,0,0,0,0,0,0,0,0,0,0,0,2],
@@ -73,14 +70,14 @@ $(document).ready(function(){
             [2,1,1,1,1,1,1,0,0,0,0,1,1,1,6],
             [2,1,1,1,1,1,1,0,0,0,0,1,1,1,2],
             [2,1,1,1,1,1,1,0,0,0,0,0,0,0,2],
-            [2,3,4,3,1,1,1,0,0,0,0,3,0,0,2],
-            [2,4,3,4,1,1,1,0,0,0,0,0,0,0,2],
+            [2,3,1,3,1,1,1,0,0,0,0,0,0,0,2],
+            [2,4,1,4,1,1,1,0,0,0,0,0,0,0,2],
             [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
         ];
         var room6 = [
-            [2,2,2,2,2,2,2,2,2,2,2,2,2,6,2],
-            [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
-            [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
+            [2,2,2,2,2,2,2,2,2,2,2,2,2,8,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,0,0,2],
+            [2,1,1,1,1,1,1,1,1,1,1,1,0,0,2],
             [2,1,1,1,1,1,1,1,1,1,1,1,3,4,2],
             [6,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
             [2,1,1,1,1,1,1,1,1,1,1,1,1,1,2],
@@ -96,12 +93,12 @@ $(document).ready(function(){
         var start_quests = [
             {'name': 'Goblin', 'xp': 200, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Goblins and return for a reward!</p>", 'reward': "<p class='green'>You receive 200XP and two potions!</p>"}, 
             {'name': 'Troll', 'xp': 350, 'items': ['Healing Potion', 'Energy Potion'], 'message': "<p class='green huge'>The traveler has asked for your assistance. Kill 3 Trolls and return for a reward!</p>", 'reward': "<p class='green'>You receive 350XP and two potions!</p>"}, 
-            {'name': 'Dragon', 'xp': 3000, 'items': ['Healing Potion','Healing Potion','Healing Potion','Healing Potion','Healing Potion','Energy Potion','Energy Potion','Energy Potion','Energy Potion','Energy Potion'], 'message': "<p class='green huge'>You have made it deep into Django's Dungeon, adventurer. Legend tells that the caverns beyond this point contain Dragons! Kill 3 and return for a sizeable reward!</p>", 'reward': "<p class='green'>You receive 3000XP and TEN potions!</p>"}
+            {'name': 'Dragon', 'xp': 3000, 'items': ['Healing Potion','Healing Potion','Healing Potion','Energy Potion','Energy Potion','Energy Potion'], 'message': "<p class='green huge'>You have made it deep into Django's Dungeon, adventurer. Legend tells that the caverns beyond this point contain Dragons! Kill 3 and return for a sizeable reward!</p>", 'reward': "<p class='green'>You receive 3000XP and SIX potions!</p>"}
         ];
         // THIS SECTION DEFINES CHARACTER CLASS AND ASSOC. METHODS
         // character related variables
         class Character {
-            constructor(name="Tester", x=1, y=1, room_x=0, room_y=0, hp=200, maxhp=200, xp=0, lvl=1, atkval=25, energy=100, maxenergy=100, target=null, moveable=true, in_combat=false, in_motion=false,looking_inv=false, looking_quest_log=false, combat_moves={'Punch': ['A', 1, 0], 'Kick': ['B', 2, 10]}, inventory=[], globe=startglobe, world=startglobe[0][0], active_quest=null, quest_counter=0, available_quests=start_quests) {
+            constructor(name="Tester", x=1, y=1, room_x=0, room_y=0, hp=200, maxhp=200, xp=0, lvl=1, atkval=25, energy=100, maxenergy=100, target=null, moveable=true, in_combat=false, in_motion=false,looking_inv=false, looking_quest_log=false, combat_moves={'Punch': ['A', 1, 0], 'Kick': ['B', 2, 10]}, inventory=[], globe=startglobe, world=startglobe[0][0], active_quest=null, quest_counter=0, available_quests=start_quests, available_weapons=[], equipped_weapon=null, looking_weapons=false) {
                 this.name = name;
                 this.x = x;
                 this.y = y;
@@ -127,6 +124,9 @@ $(document).ready(function(){
                 this.active_quest = active_quest;
                 this.quest_counter = quest_counter;
                 this.available_quests = available_quests;
+                this.available_weapons = available_weapons;
+                this.equipped_weapon = equipped_weapon;
+                this.looking_weapons = looking_weapons;
             }
             moveCharacter(){
                 $('#character').css({
@@ -145,12 +145,12 @@ $(document).ready(function(){
                 }
             }
             check_level(){
-                if (this.xp >= this.lvl*this.lvl*100) {
+                if (this.xp >= this.lvl*this.lvl*250) {
                     $('#messages').prepend("<p class='green huge'>You leveled up!</p>");
                     this.lvl += 1;
-                    this.maxhp += this.lvl*this.lvl*10;
-                    this.maxenergy += this.lvl*this.lvl*5;
-                    this.atkval += this.lvl*this.lvl;
+                    this.maxhp += this.lvl*this.lvl*5;
+                    this.maxenergy += this.lvl*this.lvl;
+                    this.atkval += this.lvl;
                     if (this.lvl == 5) {
                         this.combat_moves['Fireball'] = ['C', 4, 20];
                         $('#messages').prepend("<p class='green huge'>You learned FIREBALL!</p>");
@@ -207,12 +207,65 @@ $(document).ready(function(){
                     var cur = this.combat_moves[option];
                     combat_options_html += ("<p>" + cur[0] + " - ");
                     combat_options_html += (option + " - Deals " + (this.atkval*cur[1]) + " damage - Costs ");
-                    combat_options_html += (cur[2] + " energy.");
-                    $('#usercommands').html(combat_options_html);
+                    combat_options_html += (cur[2] + " energy.</p>");
+                }
+                if (this.equipped_weapon != null) {
+                    var dmg = 0;
+                    var nrg_cost = 0;
+                    if (this.equipped_weapon == 'Sword') {
+                        dmg = 3;
+                        nrg_cost = 10;
+                    }
+                    else if (this.equipped_weapon == 'Bow') {
+                        dmg = 5;
+                        nrg_cost = 20;
+                    }
+                    combat_options_html += ("<p>S - " + this.equipped_weapon + " - Deals " + this.atkval*dmg + " damage");
+                    combat_options_html += (" - Costs " + nrg_cost + " energy.</p>");
+                }
+                $('#usercommands').html(combat_options_html);
+            }
+            use_weapon(weapon){
+                var dmg;
+                var nrg_cost;
+                if (weapon == 'Sword') {
+                    dmg = 3;
+                    nrg_cost = 10;
+                }
+                else if (weapon == 'Bow') {
+                    dmg = 5;
+                    nrg_cost = 20;
+                }
+                if (this.energy >= nrg_cost) {
+                    var dmg_dealt = this.atkval*dmg;
+                    var message_html = "<p class='green'>You dealt " + dmg_dealt + " damage!</p>";
+                    $('#messages').prepend(message_html);
+                    message_html = "<p class='red'>You took " + this.target.atkval + " damage!</p>";
+                    $('#messages').prepend(message_html);                            
+                    this.target.hp -= dmg_dealt;
+                    this.hp -= this.target.atkval;
+                    this.energy -= nrg_cost;
+                    updateStats();
+                    updateMonsterStats();
+                    $('#hp').css({'color': 'red', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'black', 'font-size': '1em'});});
+                    $('#enemy img').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){
+                        character.check_death();
+                        if (character.hp >= 0){
+                            character.target.check_death();
+                        }
+                        character.in_motion = false;
+                    });
+                }
+                else {
+                    $('#usercommands').fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){
+                        $('#messages').prepend("<p class='red huge'>You don't have enough energy for that!</p>");
+                        character.in_motion = false;
+                    });
                 }
             }
             check_inventory() {
                 this.looking_quest_log = false;
+                this.looking_weapons = false;
                 if (this.looking_inv) {
                     this.looking_inv = false;
                     updateStats();
@@ -229,22 +282,26 @@ $(document).ready(function(){
                     $('#stats button.item').click(function(){
                         var cur_item = $(this).val();
                         var index = character.inventory.indexOf(cur_item);
-                        character.inventory.splice(index, 1);
                         if (cur_item == "Healing Potion") {
-                            character.hp += 100;
+                            character.inventory.splice(index, 1);
+                            character.hp += (character.maxhp/4);
                             if (character.hp > character.maxhp){
                                 character.hp = character.maxhp;
                             }
                             character.check_inventory();
-                            $('#hp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'red', 'font-size': '1em'});});
+                            $('#hp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'black', 'font-size': '1em'});});
                         }
                         else if (cur_item == "Energy Potion") {
-                            character.energy += 50;
+                            character.inventory.splice(index, 1);
+                            character.energy += (character.maxenergy/4);
                             if (character.energy > character.maxenergy){
                                 character.energy = character.maxenergy;
                             }
                             character.check_inventory();
                             $('#energy').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css({'color': 'black', 'font-size': '1em'});});
+                        }
+                        else if (cur_item == "Key") {
+                            $('#messages').prepend("<p class='green'>This key must unlock something... Try pressing spacebar next to a door.</p>");
                         }
                     });
                     $('#stats form').submit(function(){
@@ -252,8 +309,47 @@ $(document).ready(function(){
                     });
                 }
             }
+            check_weapons(){
+                this.looking_inv = false;
+                this.looking_quest_log = false;
+                if (this.looking_weapons) {
+                    this.looking_weapons = false;
+                    updateStats();
+                }
+                else {
+                    this.looking_weapons = true;
+                    var weapon_html = "<h1>Weapons</h1>";
+                    if (this.equipped_weapon == null) {
+                        weapon_html += "<p>Equipped: None</p>";
+                    }
+                    else {
+                        weapon_html += ("<p class='weapon'>Equipped:</p><img class='wpimg' src='static/save/images/"+this.equipped_weapon+".png'>");
+                    }
+                    weapon_html += "<p>Available Weapons:</p><ul>";
+                    for (var weapon in this.available_weapons) {
+                        weapon_html += ("<li><button class='weapon' value='" + this.available_weapons[weapon] + "'></li>");
+                    }
+                    weapon_html += "</ul>";
+                    $('#stats').html(weapon_html);
+                    $('#stats button.weapon').click(function(){
+                        var cur_wpn = $(this).val();
+                        var eqp_wpn = null;
+                        if (character.equipped_weapon != null) {
+                            eqp_wpn = character.equipped_weapon;
+                        }
+                        character.equipped_weapon = cur_wpn;
+                        var index = character.available_weapons.indexOf(cur_wpn);
+                        character.available_weapons.splice(index, 1);
+                        if (eqp_wpn != null) {
+                            character.available_weapons.push(eqp_wpn);
+                        }
+                        updateStats();
+                    });
+                }
+            }
             check_quest_log(){
                 this.looking_inv = false;
+                this.looking_weapons = false;
                 if (this.looking_quest_log) {
                     this.looking_quest_log = false;
                     updateStats();
@@ -283,7 +379,7 @@ $(document).ready(function(){
                     quest = this.available_quests[2];
                 }
                 else {
-                    quest = this.available_quests[Math.floor(Math.random()*this.available_quests.length)];
+                    quest = this.available_quests[Math.floor(Math.random()*this.available_quests.length-1)];
                 }
                 $('#messages').prepend(quest.message);
                 this.active_quest = quest;
@@ -291,16 +387,49 @@ $(document).ready(function(){
                 this.quest_counter = 0;
             }
             finish_quest(){
-                $('#messages').prepend("<p class='green huge'>The traveler rewards you for your assistance!</p>");
+                $('#messages').prepend("<p class='green'>The traveler rewards you for your assistance!</p>");
                 $('#messages').prepend(this.active_quest.reward);
                 this.xp += this.active_quest.xp;
                 for (var item in this.active_quest.items) {
                     this.inventory.push(this.active_quest.items[item]);
                 }
+                if (this.room_x == 0 && this.room_y == 1 && this.available_weapons.indexOf('Sword') < 0) {
+                    $('#messages').prepend("<p class='green'>The traveler offers you his sword! Press 'W' to toggle your weapons menu!</p>");
+                    this.available_weapons.push('Sword');
+                }
+                else if (this.room_x == 1 && this.room_y == 0 && this.available_weapons.indexOf('Bow') < 0) {
+                    $('#messages').prepend("<p class='green'>The traveler offers you his bow! Press 'W' to toggle your weapons menu!</p>");
+                    this.available_weapons.push('Bow');
+                }
+                else if (this.room_x == 1 && this.room_y == 1 && !('Pyroblast' in this.combat_moves)) {
+                    $('#messages').prepend("<p class='green'>The traveler teaches you Pyroblast! This should help!</p>");
+                    this.combat_moves['Pyroblast'] = ['P', 16, 100];
+                    $('#messages').prepend("<p class='green'>The traveler says: 'I think you may be ready to face Lord Django, adventurer. Many before you have failed, but I will entrust you with this key. You will know what to do.'</p>");
+                    $('#messages').prepend("<p class='green'>If you don't yet feel ready, try to gain strength fighting against more monsters. You may still complete additional quests for XP and rewards.</p>");
+                    this.inventory.push('Key');
+                }
                 this.active_quest = null;
                 $('#xp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#xp').css({'color': 'black', 'font-size': '1em'});});
                 updateStats();
                 this.check_level();
+            }
+            win_game(){
+                $('#gamewrap').fadeOut(1000, function(){
+                    $('#gamewrap').children().hide();
+                    $('#character').hide();
+                    $('#gamewrap').css({'background': 'url(static/save/images/victory.gif) no-repeat center', 'background-size': '100% 100%'});
+                    $('#gamewrap').fadeIn(1000);
+                    $('#messages').html("<p class='green huge'>You have vanquished the evil Lord Django!</p>");
+                    $('#messages').append("<p><button id='continue'>Click to Continue Exploring</button></p>");
+                    character.globe[0][2][1][7] = 0;
+                    $('#continue').click(function(){
+                        $('#gamewrap').css({'background': 'transparent'});
+                        $('#gamewrap').children().show();
+                        $('#character').show();
+                        $('#messages').html("<p class='green'>Continue exploring adventurer. See if you can top the XP leaderboard!</p>");
+                        createWorld();
+                    });
+                });
             }
         }
         function createWorld(){
@@ -326,13 +455,16 @@ $(document).ready(function(){
                     }
                     else if (character.world[i][j] == 5) {
                         if (character.room_x == 0 && character.room_y == 1) {
-                            worldhtml += "<div class='empty'><img src='static/save/images/elf.png' alt='elf'></div>";
+                            worldhtml += "<div class='empty'><img src='static/save/images/swordsman.png' alt='elf'></div>";
                         }
                         else if (character.room_x == 1 && character.room_y == 0) {
-                            worldhtml += "<div class='empty'><img src='static/save/images/swordsman.png' alt='swordsman'></div>";
+                            worldhtml += "<div class='empty'><img src='static/save/images/elf.png' alt='swordsman'></div>";
                         }
                         else if (character.room_x == 1 && character.room_y == 1) {
                             worldhtml += "<div class='empty'><img src='static/save/images/wizard.png' alt='wizard'></div>";
+                        }
+                        else if (character.room_x == 2 && character.room_y == 0) {
+                            worldhtml += "<div class='empty'><img src='static/save/images/Boss.png' alt='Boss'></div>";
                         }
                     }
                     else if (character.world[i][j] == 6) {
@@ -341,13 +473,16 @@ $(document).ready(function(){
                     else if (character.world[i][j] == 7) {
                         worldhtml += "<div class='empty'><img src='static/save/images/healingfountain.png' alt='healing fountain'></div>";
                     }
+                    else if (character.world[i][j] == 8) {
+                        worldhtml += "<div class='door'></div>";
+                    }
                 }
                 worldhtml += "</div>";
             }
             $('#gamewrap').html(worldhtml);
         };
         // make our instance
-        const character = new Character(data.name, data.x, data.y, data.room_x, data.room_y, data.hp, data.maxhp, data.xp, data.lvl, data.atkval, data.energy, data.maxenergy, data.target, data.moveable, data.in_combat, data.in_motion, data.looking_inv, data.looking_quest_log, data.combat_moves, data.inventory, data.globe, data.world, data.active_quest, data.quest_counter, data.available_quests);
+        const character = new Character(data.name, data.x, data.y, data.room_x, data.room_y, data.hp, data.maxhp, data.xp, data.lvl, data.atkval, data.energy, data.maxenergy, data.target, data.moveable, data.in_combat, data.in_motion, data.looking_inv, data.looking_quest_log, data.combat_moves, data.inventory, data.globe, data.world, data.active_quest, data.quest_counter, data.available_quests, data.available_weapons, data.equipped_weapon, data.looking_weapons);
         createWorld();
         character.moveCharacter();
         updateStats();
@@ -359,7 +494,7 @@ $(document).ready(function(){
             htmlString += ("<h1>" + character.name + "</h1>");
             htmlString += ("<h2 id='level'>Level " + character.lvl + "</h2>");
             htmlString += ("<p id='hp'>HP: " + character.hp + "/" + character.maxhp + "</p>");
-            htmlString += ("<p id='xp'>XP: " + character.xp + "/" + (character.lvl*character.lvl*100) + "</p>");
+            htmlString += ("<p id='xp'>XP: " + character.xp + "/" + (character.lvl*character.lvl*250) + "</p>");
             htmlString += ("<p id='energy'>Energy: " + character.energy + "/" + character.maxenergy + "</p>");
             $('#stats').css('overflow-y', 'hidden');
             $('#stats').html(htmlString);
@@ -385,6 +520,9 @@ $(document).ready(function(){
             }
             check_death(){
                 if (this.hp <= 0){
+                    if (this.name == "Django") {
+                        character.win_game();
+                    }
                     var message_html = "<p class='green'>You gain " + this.xp + "XP.";
                     message_html += "<p class='green huge'><b>You killed the " + this.name + "!</b></p>";
                     $('#messages').prepend(message_html);
@@ -394,7 +532,7 @@ $(document).ready(function(){
                         $('#messages').prepend(message_html);
                     }
                     if (character.active_quest) {
-                        if (character.active_quest.name == this.name) {
+                        if (character.active_quest.name == this.name && character.quest_counter != "done") {
                             character.quest_counter++;
                             if (character.quest_counter > 2) {
                                 $('#messages').prepend("<p class='green huge'>You completed your quest! Return to the traveler to get your reward!</p>");
@@ -422,23 +560,49 @@ $(document).ready(function(){
             else if (e.which == 81) {
                 character.check_quest_log();
             }
+            else if (e.which == 87) {
+                character.check_weapons();
+            }
             else if (e.which == 32) {
                 var c = character;
                 if (c.world[c.y][c.x-1] == 5 || c.world[c.y][c.x+1] == 5 || c.world[c.y-1][c.x] == 5 || c.world[c.y+1][c.x] == 5) {
-                    if (character.active_quest == null) {
+                    if (c.room_x == 2 && c.room_y == 0) {
+                        var message_html = "<p class='red'>Aha! So you finally found me, " + character.name + ". And now I assume you plan to vanquish me? Good luck, FOOL!</p>";
+                        $('#messages').prepend(message_html);
+                        $('#gamewrap').fadeOut(2000, function(){
+                            character.target = new Monster('Django', 25, 500, 10000, 100000);
+                            character.attack(character.target);
+                            $('#gamewrap').fadeIn(2000);
+                        });
+                    }
+                    else if (character.active_quest == null) {
                         character.start_quest();
                     }
                     else if (character.quest_counter == "done" && character.active_quest.room[0] == character.room_x && character.active_quest.room[1] == character.room_y) {
                         character.finish_quest();
                     }
                 }
-                if (c.world[c.y][c.x-1] == 7 || c.world[c.y][c.x+1] == 7 || c.world[c.y-1][c.x] == 7 || c.world[c.y+1][c.x] == 7) {
+                else if (c.world[c.y][c.x-1] == 7 || c.world[c.y][c.x+1] == 7 || c.world[c.y-1][c.x] == 7 || c.world[c.y+1][c.x] == 7) {
                     $('#messages').prepend("<p class='green huge'>You drink from the healing fountain. Your health and energy are restored!</p>");
                     character.hp = character.maxhp;
                     character.energy = character.maxenergy;
                     updateStats();
                     $('#hp').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#hp').css({'color': 'black', 'font-size': '1em'});});
                     $('#energy').css({'color': 'green', 'font-size': '2em'}).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100, function(){$('#energy').css({'color': 'black', 'font-size': '1em'});});
+                }
+                else if (c.world[c.y][c.x-1] == 8 || c.world[c.y][c.x+1] == 8 || c.world[c.y-1][c.x] == 8 || c.world[c.y+1][c.x] == 8) {
+                    if (character.inventory.indexOf('Key') < 0) {
+                        $('#messages').prepend("<p class='red'>Hmmm. The door appears to be locked. Maybe there is a key somewhere?</p>");
+                    }
+                    else {
+                        $('#messages').prepend("<p class='green'>You succesfully unlocked the door with your key!</p>");
+                        character.moveable = false;
+                        $('.door').fadeOut(1000, function(){
+                            character.globe[1][2][0][13] = 6;
+                            createWorld();
+                            character.moveable = true;
+                        });
+                    }
                 }
             }
             else if (character.moveable) {
@@ -465,25 +629,29 @@ $(document).ready(function(){
                     character.moveCharacter();
                 }
                 if (e.which == 37) {
-                    if (character.world[character.y][character.x-1] != 2 && character.world[character.y][character.x-1] != 5 && character.world[character.y][character.x-1] != 7) {
+                    var trying_to_go = character.world[character.y][character.x-1];
+                    if (trying_to_go != 2 && trying_to_go != 5 && trying_to_go != 7 && trying_to_go != 8) {
                         character.x -= 1;
                         $('#character').css('background-position', '0px -64px');
                     }
                 }
                 else if (e.which == 39) {
-                    if (character.world[character.y][character.x+1] != 2 && character.world[character.y][character.x+1] != 5 && character.world[character.y][character.x+1] != 7) {
+                    var trying_to_go = character.world[character.y][character.x+1];
+                    if (trying_to_go != 2 && trying_to_go != 5 && trying_to_go != 7 && trying_to_go != 8) {
                         character.x += 1;
                         $('#character').css('background-position', '0 0');
                     }
                 }
                 else if (e.which == 38) {
-                    if (character.world[character.y-1][character.x] != 2 && character.world[character.y-1][character.x] != 5 && character.world[character.y-1][character.x] != 7) {
+                    var trying_to_go = character.world[character.y-1][character.x];
+                    if (trying_to_go != 2 && trying_to_go != 5 && trying_to_go != 7 && trying_to_go != 8) {
                         character.y -= 1;
                         $('#character').css('background-position', '-64px -64px');
                     }
                 }
                 else if (e.which == 40) {
-                    if (character.world[character.y+1][character.x] != 2 && character.world[character.y+1][character.x] != 5 && character.world[character.y+1][character.x] != 7) {
+                    var trying_to_go = character.world[character.y+1][character.x];
+                    if (trying_to_go != 2 && trying_to_go != 5 && trying_to_go != 7 && trying_to_go != 8) {
                         character.y += 1;
                         $('#character').css('background-position', '-64px 0px');
                     }
@@ -495,15 +663,15 @@ $(document).ready(function(){
                 if (character.world[character.y][character.x] == 1) {
                     var rng = Math.random();
                     if (character.room_x == 2 && character.room_y == 1 && rng <= 0.2) {
-                        character.target = new Monster('Dragon', character.lvl, 30, 150, 200);
+                        character.target = new Monster('Dragon', character.lvl, 40, 500, 200);
                         character.attack(character.target);
                     }
                     else if (rng <= 0.1) {
-                        character.target = new Monster('Goblin', character.lvl, 15, 50, 50);
+                        character.target = new Monster('Goblin', character.lvl, 20, 75, 50);
                         character.attack(character.target);
                     }
                     else if (rng <= 0.2) {
-                        character.target = new Monster('Troll', character.lvl, 10, 75, 65);
+                        character.target = new Monster('Troll', character.lvl, 15, 150, 65);
                         character.attack(character.target);
                     }  
                 }
@@ -536,6 +704,14 @@ $(document).ready(function(){
                 else if (e.which == 68){
                     character.in_motion = true;
                     character.use_move('Fireblast');
+                }
+                else if (e.which == 83){
+                    character.in_motion = true;
+                    character.use_weapon(character.equipped_weapon);
+                }
+                else if (e.which == 80){
+                    character.in_motion = true;
+                    character.use_move('Pyroblast');
                 }
             }
         });

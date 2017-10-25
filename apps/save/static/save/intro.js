@@ -1,12 +1,12 @@
 $(document).ready(function(){
     messages = [
         "Welcome, Adventurer! You have entered Django's Dungeon - a labyrinth of adventure and danger! (click spacebar to continue)", 
-        "Your quest is to navigate the Dungeon and find the evil Lord Django who resides within.", 
-        "Along the way, you may encounter monsters, who hide in certain 'danger zones' throughout the dungeon.",
+        "Your quest is to navigate the Dungeon and find the evil Lord Django who resides within. Use your arrow keys to move.", 
+        "Along the way, you may encounter monsters, who hide in certain 'danger zones' throughout the dungeon. When the ground looks gray, danger lurks!",
         "Combat is 'turn-based' - you will select one of your attack options, and then the monster will retaliate. Combat will continue until one of you has died.",
         "Defeating monsters will grant you experience, helping to level up your character. You may also retrieve special items from these monsters.",
-        "Along the way, you may also encounter other travelers. Interact with them by pressing spacebar while next to one. They may offer you items or quests. Press 'Q' to toggle your Quest Journal.",
-        "Finally, you may find items laying on the ground. Simply walk onto these items to add them to your inventory. You may press 'I' at any time to toggle your inventory.",
+        "Along the way, you may also encounter other travelers or objects (fountains, doors, etc). Interact with them by pressing spacebar while next to one. Travelers may offer you items or quests. Press 'Q' to toggle your Quest Journal.",
+        "Finally, you may find items laying on the ground. Simply walk onto these items to add them to your inventory. You may press 'I' at any time to toggle your inventory. You can still access and use your inventory during combat.",
         "<a href='/dashboard' class='btn btn-primary intro'>Click Here to Begin</a><a href='/intro' class='btn btn-primary intro'>Click Here to Repeat the Intro</a>"
     ];
     $('.intro').text(messages[0]);

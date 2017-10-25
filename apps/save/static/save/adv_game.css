@@ -95,7 +95,7 @@ div#combatbottom{
         display: inline-block;
     }
         div#usercommands > p:first-child{
-            margin-top: 50px;
+            margin-top: 25px;
             font-weight: bold;
             font-size: 20px;
         }
@@ -112,6 +112,10 @@ div.row div{
 }
 div.wall{
     background: url(images/wall.png) no-repeat center;
+    background-size: 100% 100%;
+}
+div.door{
+    background: url(images/door.png) no-repeat center;
     background-size: 100% 100%;
 }
 div.empty{
@@ -186,4 +190,35 @@ button[value='Energy Potion']{
     width: 3em;
     display: inline-block;
     margin: 1em;
+}
+button[value='Key']{
+    background: url(images/Key.png);
+    background-size: 100% 100%;
+    color: transparent;
+    height: 3em;
+    width: 3em;
+    display: inline-block;
+    margin: 1em;
+}
+button[value='Sword']{
+    background: url(images/Sword.png);
+    background-size: 100% 100%;
+    height: 2.5em;
+    width: 2.5em;
+    display: inline-block;
+    margin: 0 1em 0 1em;
+}
+button[value='Bow']{
+    background: url(images/Bow.png);
+    background-size: 100% 100%;
+    height: 2.5em;
+    width: 2.5em;
+    display: inline-block;
+    margin: 0 1em 0 1em;
+}
+img.wpimg{
+    display: block;
+    height: 2.5em;
+    width: 2.5em;
+    margin: 0 auto;
 }
