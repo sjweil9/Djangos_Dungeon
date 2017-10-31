@@ -200,6 +200,22 @@ button[value='Key']{
     display: inline-block;
     margin: 1em;
 }
+button.item, button.weapon{
+    position: relative;
+}
+button.item:hover:after, button.weapon:hover:after{
+    background: #333;
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    bottom: 26px;
+    color: #fff;
+    content: attr(value);
+    left: 20%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 100px;
+}
 button[value='Sword']{
     background: url(images/Sword.png);
     background-size: 100% 100%;

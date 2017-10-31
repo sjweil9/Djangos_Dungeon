@@ -1,9 +1,10 @@
 /*
 
 current bugs:
+-UI:~~added mouseovers for items/weapons, need more detailed info
 
 desired functionality:
--max inventory size/have potions stack
+-max inventory size/have potions stack*
 -add MORE types of monsters/locations for them to appear
 -gold?
 -more items
@@ -145,14 +146,14 @@ $(document).ready(function(){
                 }
             }
             check_level(){
-                if (this.xp >= this.lvl*this.lvl*250) {
+                if (this.xp >= this.lvl*this.lvl*150) {
                     $('#messages').prepend("<p class='green huge'>You leveled up!</p>");
                     this.lvl += 1;
                     this.maxhp += this.lvl*this.lvl*5;
                     this.maxenergy += this.lvl*this.lvl;
                     this.atkval += this.lvl;
                     if (this.lvl == 5) {
-                        this.combat_moves['Fireball'] = ['C', 4, 20];
+                        this.combat_moves['Fireball'] = ['C', 4, 15];
                         $('#messages').prepend("<p class='green huge'>You learned FIREBALL!</p>");
                     }
                     if (this.lvl == 10) {
@@ -325,11 +326,10 @@ $(document).ready(function(){
                     else {
                         weapon_html += ("<p class='weapon'>Equipped:</p><img class='wpimg' src='static/save/images/"+this.equipped_weapon+".png'>");
                     }
-                    weapon_html += "<p>Available Weapons:</p><ul>";
+                    weapon_html += "<p>Available Weapons:</p>";
                     for (var weapon in this.available_weapons) {
-                        weapon_html += ("<li><button class='weapon' value='" + this.available_weapons[weapon] + "'></li>");
+                        weapon_html += ("<button class='weapon' value='" + this.available_weapons[weapon] + "'>");
                     }
-                    weapon_html += "</ul>";
                     $('#stats').html(weapon_html);
                     $('#stats button.weapon').click(function(){
                         var cur_wpn = $(this).val();
@@ -494,7 +494,7 @@ $(document).ready(function(){
             htmlString += ("<h1>" + character.name + "</h1>");
             htmlString += ("<h2 id='level'>Level " + character.lvl + "</h2>");
             htmlString += ("<p id='hp'>HP: " + character.hp + "/" + character.maxhp + "</p>");
-            htmlString += ("<p id='xp'>XP: " + character.xp + "/" + (character.lvl*character.lvl*250) + "</p>");
+            htmlString += ("<p id='xp'>XP: " + character.xp + "/" + (character.lvl*character.lvl*150) + "</p>");
             htmlString += ("<p id='energy'>Energy: " + character.energy + "/" + character.maxenergy + "</p>");
             $('#stats').css('overflow-y', 'hidden');
             $('#stats').html(htmlString);
@@ -663,7 +663,7 @@ $(document).ready(function(){
                 if (character.world[character.y][character.x] == 1) {
                     var rng = Math.random();
                     if (character.room_x == 2 && character.room_y == 1 && rng <= 0.2) {
-                        character.target = new Monster('Dragon', character.lvl, 40, 500, 200);
+                        character.target = new Monster('Dragon', character.lvl, 30, 325, 175);
                         character.attack(character.target);
                     }
                     else if (rng <= 0.1) {
