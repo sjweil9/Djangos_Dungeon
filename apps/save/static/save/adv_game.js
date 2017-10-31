@@ -663,7 +663,7 @@ $(document).ready(function(){
                 if (character.world[character.y][character.x] == 1) {
                     var rng = Math.random();
                     if (character.room_x == 2 && character.room_y == 1 && rng <= 0.2) {
-                        character.target = new Monster('Dragon', character.lvl, 30, 325, 175);
+                        character.target = new Monster('Dragon', character.lvl, 30, 300, 175);
                         character.attack(character.target);
                     }
                     else if (rng <= 0.1) {
@@ -671,7 +671,7 @@ $(document).ready(function(){
                         character.attack(character.target);
                     }
                     else if (rng <= 0.2) {
-                        character.target = new Monster('Troll', character.lvl, 15, 150, 65);
+                        character.target = new Monster('Troll', character.lvl, 15, 125, 75);
                         character.attack(character.target);
                     }  
                 }
