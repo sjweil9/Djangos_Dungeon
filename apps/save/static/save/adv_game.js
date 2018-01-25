@@ -570,7 +570,7 @@ $(document).ready(function(){
                         var message_html = "<p class='red'>Aha! So you finally found me, " + character.name + ". And now I assume you plan to vanquish me? Good luck, FOOL!</p>";
                         $('#messages').prepend(message_html);
                         $('#gamewrap').fadeOut(2000, function(){
-                            character.target = new Monster('Django', 25, 500, 10000, 100000);
+                            character.target = new Monster('Django', 15, 300, 3000, 1750);
                             character.attack(character.target);
                             $('#gamewrap').fadeIn(2000);
                         });
