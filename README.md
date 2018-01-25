@@ -2,4 +2,4 @@ This is a simple, 2D JavaScript RPG. There is a Python (Django) back-end that ha
 
 Users can also view the progress of other characters and see an XP leaderboard. 
 
-The project is currently deployed on AWS at 18.217.83.183.
+The project is currently deployed on AWS at 18.221.62.221.
